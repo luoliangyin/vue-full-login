@@ -3,7 +3,7 @@ import axios from 'axios'
 import router from './router'
 import store from './store'
 import * as types from './store/mutation-types'
-
+import API from './config/api'
 // this is the default config
 
 axios.default.timeout = 5000
@@ -11,7 +11,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 // create a instance
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: ''
 })
 instance.defaults.headers.post['Content-Type'] = 'application/json'
 
@@ -41,25 +41,25 @@ instance.interceptors.response.use(config => {
 const api = {
   // config the api routers
   userRegister (data) {
-    return instance.post('api/register', data)
+    return instance.post(API.register, data)
   },
   userLogin (data) {
-    return instance.post('api/login', data)
+    return instance.post(API.login, data)
   },
   userLogout (data) {
-    return instance.post('api/logout', data)
+    return instance.post(API.logout, data)
   },
   getUser (data) {
-    return instance.get('api/user', data)
+    return instance.get(API.getUser, data)
   },
   delUser (data) {
-    return instance.post('api/del', data)
+    return instance.post(API.del, data)
   },
   forgetPassword (data) {
-    return instance.post('api/forget', data)
+    return instance.post(API.forget, data)
   },
   resetPassword (data) {
-    return instance.post('api/password', data)
+    return instance.post(API.password, data)
   }
 }
 export default api
